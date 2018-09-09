@@ -6,7 +6,6 @@ function PassaISO($palavra) {
     return utf8_decode($palavra);
 
 }
-
 function ConferePreco($price) {
 
     //Procura a , para substituir por .
@@ -14,8 +13,9 @@ function ConferePreco($price) {
 
 }
 
-require_once("cabecalho.php");
-require_once("logica_usuario.php");
+session_start(); //Começa a sessão
+require_once("../Layout/cabecalho.php");
+require_once("../Funcao/logica_usuario.php");
 
 VerificaUsuario();
 
@@ -40,16 +40,14 @@ $produtoDAO = new ProdutoDAO($conexao); //Instanciando a classe ProdutoDAO
 
 $resultado = $produtoDAO->InsereProduto($produto);
 
- if ($resultado) { ?>
+if ($resultado) {
+   $_SESSION["success"] = "Produto adicionado com sucesso!!!";
+   header("Location: ../Layout/produto_lista.php");
+} else {
+   $_SESSION["success"] = "Houve um erro ao adicionar o produto";
+   header("Location: ../Layout/produto_lista.php");
+}
 
-    <p>Produto adicionado com sucesso!!!</p>
-
-  <?php } else { ?>
-
-    <p>Houve um erro ao adicionar o produto</p>
-
-  <?php }
-
-include("rodape.php");
+die();
 
 ?>

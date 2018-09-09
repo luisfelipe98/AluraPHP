@@ -2,6 +2,8 @@
 
 session_start();
 require_once("cabecalho.php");
+MostraAlerta("success");
+MostraAlerta("danger");
 
 $produtoDAO = new ProdutoDAO($conexao); //Instanciando a classe ProdutoDAO
 $resultadoBanco = $produtoDAO->ListaProdutos();
@@ -42,16 +44,16 @@ $cont = 1; //Quantos produtos são ao todo ?>
                       echo "ISBN: ".$produto->getISBN();
                     } ?>
           </td>
-            <form action="remove_produto.php" method="POST">
+            <form action="../Logica/remove_produto.php" method="POST">
               <input type="hidden" name="id" value="<?php echo $produto->getId();?>">
               <button>Remover</button>
             </form>
           </td>
-          <td><a href="altera_produto.php?id=<?php echo $produto->getId();?>">Alterar</a></td>
+          <td><a href="../Formulario/altera_produto.php?id=<?php echo $produto->getId();?>">Alterar</a></td>
         </tr>
       <?php endforeach; ?>
 </table>
 
 <?php
-include("rodape.php");
+require_once("rodape.php");
 ?>

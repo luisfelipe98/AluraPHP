@@ -9,7 +9,7 @@ function VerificaUsuario () {
   //Checka se NÃO existe um usuario logado antes de cadastrar o produto
   if (!UsuarioEstaLogado()) {
     $_SESSION["danger"] = "Você não tem acesso a essa funcionalidade.";
-    header ("Location: index.php");
+    header ("Location: Layout/index.php");
     die();
   }
 

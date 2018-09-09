@@ -1,6 +1,6 @@
 <?php
-require_once("cabecalho.php");
-require_once("logica_usuario.php");
+require_once("../Layout/cabecalho.php");
+require_once("../Funcao/logica_usuario.php");
 
 $email = $_POST['email'];
 $senha = $_POST['senha'];
@@ -14,11 +14,11 @@ $resul = $usuariodao->BuscaUsuario($usuario->getEmail(), $usuario->getSenha());
 
 if (!$resul) {
   $_SESSION["danger"] = "Usuário ou senha inválidos";
-  header("Location: index.php");
+  header("Location: ../Layout/index.php");
 } else {
   $_SESSION["success"] = "Usuário logado com sucesso!!!";
   LogaUsuario($usuario->getEmail());
-  header("Location: index.php");
+  header("Location: ../Layout/index.php");
 }
 die();
 ?>

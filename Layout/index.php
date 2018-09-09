@@ -1,13 +1,13 @@
 <?php require_once("cabecalho.php"); ?>
-<?php require_once("logica_usuario.php"); ?>
+<?php require_once("../Funcao/logica_usuario.php"); ?>
 <?php MostraAlerta("success");
 MostraAlerta("danger"); ?>
 <?php if(UsuarioEstaLogado()) { ?>
   <p>Você tá logado como <?php echo UsuarioLogado(); ?></p>
-  <a href="logout.php">Deslogar</a>
+  <a href="../Logica/logout.php">Deslogar</a>
 <?php } else { ?>
   <h2>Login</h2>
-  <form action="login.php" method="POST">
+  <form action="../Logica/login.php" method="POST">
         Email
         <input type="email" name="email">
         Senha

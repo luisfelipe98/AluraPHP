@@ -1,6 +1,6 @@
 <?php
-require_once("cabecalho.php");
-require_once("logica_usuario.php");
+require_once("../Layout/cabecalho.php");
+require_once("../Funcao/logica_usuario.php");
 
 VerificaUsuario();
 
@@ -10,8 +10,8 @@ $categoria->setId(1);
 $produto = new LivroFisico("", "", "", $categoria, "");
 
 ?>
-  <form action="adiciona_produto.php" method="POST">
-    <?php include("produto_formulario_base.php"); ?>
+  <form action="../Logica/adiciona_produto.php" method="POST">
+    <?php require_once("../Layout/produto_formulario_base.php"); ?>
     <input type="submit" value="Cadastrar">
   </form>
-<?php include("rodape.php");?>
+<?php require_once("../Layout/rodape.php");?>

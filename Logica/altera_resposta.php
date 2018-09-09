@@ -1,4 +1,6 @@
 <?php
+require_once("../Layout/cabecalho.php");
+session_start(); //Começa a sessão
 
 function PassaISO($palavra) {
 
@@ -14,8 +16,6 @@ function ConferePreco($price) {
 
 }
 
-require_once("cabecalho.php");
-
 $tipoProduto = $_POST['tipoProduto'];
 
 //Instanciando a Factory
@@ -30,7 +30,6 @@ if (array_key_exists('usado', $_POST)){
   $produto->setUsado("1");
 }else{
   $produto->setUsado("0");
-
 }
 
 $produto->setId($_POST['id']);
@@ -40,16 +39,14 @@ $produtoDAO = new ProdutoDAO($conexao); //Instanciando a classe ProdutoDAO
 
 $resultado = $produtoDAO->AlteraProduto($produto);
 
-  if ($resultado) { ?>
+if ($resultado) {
+    $_SESSION["success"] = "Produto alterado com sucesso!!!";
+    header("Location: ../Layout/produto_lista.php");
+} else {
+    $_SESSION["danger"] = "Houve um erro ao alterar o produto";
+    header("Location: ../Layout/produto_lista.php");
+ }
 
-    <p>Produto alterado com sucesso!!!</p>
-
-  <?php } else { ?>
-
-    <p>Houve um erro ao alterar o produto</p>
-
-  <?php }
-
-include("rodape.php");
+die();
 
 ?>
